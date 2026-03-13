@@ -37,13 +37,11 @@ async function generatePlaybook(url) {
       tools: [{ type: "web_search_20250305", name: "web_search" }],
       system: MONICA_SYSTEM_PROMPT,
       messages: [
-  {
-    role: "user",
-    content: `You must use the web_search tool to fetch and read the content at this URL before generating any output: ${url}
-
-Do not rely on any prior knowledge about this business. Only use what you find by actually visiting the URL. Then generate the Market Intel Playbook JSON.`
-  }
-]
+        {
+          role: "user",
+          content: `You must use the web_search tool to fetch and read the content at this URL before generating any output: ${url}. Do not rely on any prior knowledge about this business. Only use what you find by actually visiting the URL. Then generate the Market Intel Playbook JSON.`
+        }
+      ]
     })
   });
   const data = await response.json();
