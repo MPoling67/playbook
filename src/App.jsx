@@ -25,31 +25,30 @@ JSON Schema:
 {
   "businessName": "string",
   "dateGenerated": "Month YYYY",
-  "overview": "Two sentences max. Include full business name. 30 words max.",
   "overallScore": 72,
   "overallDescriptor": "string — one of: Category Leader | Strong Foundation, Underutilized Story | Solid Presence, Clear Gaps | Underdeveloped Positioning | Significant Opportunity",
-  "overallSummary": "Two sentences. What's working, what's the primary gap. Specific to this organization. 40 words max.",
+  "overallSummary": "STRICT 2 sentences max, 40 words max. What is working and what is the primary gap. Be specific to this organization — no generics.",
   "prestige": {
     "score": 14,
-    "content": "40-50 words. Does this organization have a clear category they lead or are claiming? Is their positioning distinct or generic? For nonprofits, government, or education, assess whether their mission is stated with conviction and clarity."
+    "content": "ONE sentence only. Is their positioning distinct or generic? For nonprofits/govt/edu: is the mission stated with conviction?"
   },
   "origin": {
     "score": 12,
-    "content": "40-50 words. For for-profit: is the founder or leader's story visible and compelling? For nonprofit, government, or education: is the founding mission and institutional values present and active — or buried under program listings and compliance language?"
+    "content": "ONE sentence only. For for-profit: is the founder/leader story visible? For nonprofits/govt/edu: is the founding mission active or buried?"
   },
   "wow": {
     "score": 16,
-    "content": "40-50 words. Identify the singular standout factor — the thing that makes this organization genuinely different. Also identify the Sleeping Giant: a high-value but underserved pillar, service, or story that should be more elevated. Explain briefly why it's being left on the table."
+    "content": "ONE sentence only. Name the standout factor AND the Sleeping Giant in the same sentence if possible."
   },
   "expertise": {
     "score": 10,
-    "content": "40-50 words. Look for self-reported proof: credentials, methodologies, case studies, track record, proprietary frameworks, certifications, years of experience. Is the depth of knowledge visible or assumed? Is there a clear demonstration of how they work?"
+    "content": "ONE sentence only. Is the depth of knowledge visible or assumed?"
   },
   "reputation": {
     "score": 8,
-    "content": "40-50 words. On-page only. Look for testimonials, client logos, press mentions, embedded reviews, awards, or any third-party validation the organization has chosen to feature. Assess quality, placement, and whether social proof is doing any conversion work."
+    "content": "ONE sentence only. On-page validation only — testimonials, logos, press, awards."
   },
-  "brandPersonality": "40-50 words. Based on tone, language, word choice, and content elements — what personality does this brand project? How is a visitor likely to experience it emotionally? What questions might a visitor have that aren't being answered? Note any friction between the personality projected and what the audience likely expects.",
+  "brandPersonality": "TWO sentences max. Based on tone, language, word choice, and content structure only — no visual analysis. What personality does this brand project and where is the friction between that personality and what their audience likely expects.",
   "urlsAttempted": ["https://example.com", "https://www.example.com"],
   "fetchSuccess": true,
   "fetchNote": "Optional string — only include if there were issues fetching. Describe what happened."
@@ -127,11 +126,11 @@ Then generate the full Prestige Score Report JSON.`
 }
 
 const POWER_SECTIONS = [
-  { key: "prestige", letter: "P", label: "Prestige", subtitle: "Do You Own Your Category?" },
-  { key: "origin",   letter: "O", label: "Origin",   subtitle: "Is Your Story Showing Up?" },
-  { key: "wow",      letter: "W", label: "Wow",       subtitle: "What Makes You Unforgettable?" },
-  { key: "expertise",letter: "E", label: "Expertise", subtitle: "Are You Proving What You Know?" },
-  { key: "reputation",letter:"R", label: "Reputation",subtitle: "Are Others Vouching For You?" },
+  { key: "prestige", letter: "P", label: "Prestige",   subtitle: "Do You Own Your Category?" },
+  { key: "origin",   letter: "O", label: "Origin",     subtitle: "What's Your Origin Story?" },
+  { key: "wow",      letter: "W", label: "Wow",        subtitle: "What Makes You Unforgettable?" },
+  { key: "expertise",letter: "E", label: "Expertise",  subtitle: "Do You Demonstrate Clear Expertise?" },
+  { key: "reputation",letter:"R", label: "Reputation", subtitle: "Do Others Vouch For You?" },
 ];
 
 function ScoreBar({ score, max = 20 }) {
@@ -396,39 +395,31 @@ export default function App() {
           <div style={{ borderTop: "1px solid #3d2e24", marginBottom: "56px" }} />
 
           {/* Business name + date */}
-          <div style={{ marginBottom: "48px" }}>
-            <h2 style={{ fontSize: "30px", fontWeight: "400", color: "#f2e4ca", margin: "0 0 8px", letterSpacing: "-0.01em", fontFamily: "'Georgia', serif" }}>
+          <div style={{ marginBottom: "40px" }}>
+            <h2 style={{ fontSize: "28px", fontWeight: "600", color: "#f2e4ca", margin: "0 0 8px", letterSpacing: "-0.01em" }}>
               {playbook.businessName}
             </h2>
-            <p style={{ fontSize: "13px", color: "#861442", letterSpacing: "0.1em", margin: 0, textTransform: "uppercase", fontWeight: "500" }}>
+            <p style={{ fontSize: "12px", color: "#861442", letterSpacing: "0.1em", margin: 0, textTransform: "uppercase", fontWeight: "500" }}>
               ➜ {playbook.dateGenerated}
             </p>
           </div>
 
-          {/* Overview */}
-          <div style={{ marginBottom: "48px" }}>
-            <p style={{ fontSize: "12px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#5a4a3a", marginBottom: "12px", fontWeight: "500" }}>Overview</p>
-            <p style={{ fontSize: "14px", lineHeight: "1.75", color: "#c8b8a0", margin: 0, fontStyle: "italic", fontFamily: "'Georgia', serif", fontWeight: "300" }}>
-              {playbook.overview}
-            </p>
-          </div>
-
-          {/* Overall Score */}
+          {/* Box 1: Score Total */}
           <div style={{
             background: "#1e1510",
             border: "1px solid #3d2e24",
             borderRadius: "6px",
-            padding: "36px 40px",
-            marginBottom: "48px"
+            padding: "32px 36px",
+            marginBottom: "16px"
           }}>
-            <p style={{ fontSize: "12px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#5a4a3a", marginBottom: "20px", fontWeight: "500" }}>⚡ Overall Prestige Score</p>
-            <div style={{ display: "flex", alignItems: "baseline", gap: "8px", marginBottom: "16px" }}>
-              <span style={{ fontSize: "76px", fontWeight: "300", lineHeight: "1", color: overallColor, letterSpacing: "-0.04em", fontFamily: "'Georgia', serif" }}>
+            <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#5a4a3a", marginBottom: "20px", fontWeight: "500" }}>⚡ Prestige Score</p>
+            <div style={{ display: "flex", alignItems: "baseline", gap: "8px", marginBottom: "14px" }}>
+              <span style={{ fontSize: "72px", fontWeight: "300", lineHeight: "1", color: overallColor, letterSpacing: "-0.04em", fontFamily: "'Georgia', serif" }}>
                 {playbook.overallScore}
               </span>
-              <span style={{ fontSize: "26px", color: "#3d2e24", paddingBottom: "8px" }}>/100</span>
+              <span style={{ fontSize: "22px", color: "#3d2e24", paddingBottom: "6px" }}>/100</span>
             </div>
-            <div style={{ background: "#2b211b", borderRadius: "2px", height: "4px", marginBottom: "16px", overflow: "hidden" }}>
+            <div style={{ background: "#2b211b", borderRadius: "2px", height: "3px", marginBottom: "20px", overflow: "hidden" }}>
               <div style={{
                 height: "100%",
                 width: `${playbook.overallScore}%`,
@@ -437,52 +428,63 @@ export default function App() {
                 animation: "scoreBar 1.2s ease forwards"
               }} />
             </div>
-            <p style={{ fontSize: "19px", color: "#f2e4ca", margin: "0 0 10px", fontWeight: "500" }}>
+            <p style={{ fontSize: "15px", color: "#f2e4ca", margin: "0 0 10px", fontWeight: "600", letterSpacing: "0.01em" }}>
               {playbook.overallDescriptor}
             </p>
-            <p style={{ fontSize: "14px", color: "#7a6a58", margin: 0, lineHeight: "1.7", fontStyle: "italic", fontFamily: "'Georgia', serif", fontWeight: "300" }}>
+            <p style={{ fontSize: "15px", color: "#f2e4ca", margin: 0, lineHeight: "1.75", fontWeight: "400" }}>
               {playbook.overallSummary}
             </p>
           </div>
 
-          {/* P-O-W-E-R Sections */}
-          {POWER_SECTIONS.map(({ key, letter, label, subtitle }) => {
-            const section = playbook[key];
-            if (!section) return null;
-            return (
-              <div key={key} style={{
-                background: "#1e1510",
-                border: "1px solid #3d2e24",
-                borderRadius: "6px",
-                padding: "32px 36px",
-                marginBottom: "16px"
-              }}>
-                <div style={{ display: "flex", alignItems: "baseline", gap: "10px", marginBottom: "12px" }}>
-                  <span style={{ fontSize: "18px", fontWeight: "700", color: "#f2e4ca", letterSpacing: "0.1em" }}>{letter}</span>
-                  <p style={{ fontSize: "16px", letterSpacing: "0.06em", textTransform: "uppercase", color: "#f2e4ca", margin: 0, fontWeight: "600" }}>
-                    {label} — <span style={{ fontWeight: "400", letterSpacing: "0.04em" }}>{subtitle}</span>
+          {/* Box 2: Score Breakdown */}
+          <div style={{
+            background: "#1e1510",
+            border: "1px solid #3d2e24",
+            borderRadius: "6px",
+            padding: "32px 36px",
+            marginBottom: "16px"
+          }}>
+            <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#5a4a3a", marginBottom: "24px", fontWeight: "500" }}>Score Breakdown</p>
+            {POWER_SECTIONS.map(({ key, letter, label, subtitle }, idx) => {
+              const section = playbook[key];
+              if (!section) return null;
+              return (
+                <div key={key} style={{ marginBottom: idx < POWER_SECTIONS.length - 1 ? "24px" : 0 }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "6px" }}>
+                    <p style={{ fontSize: "15px", color: "#f2e4ca", margin: 0, fontWeight: "600" }}>
+                      <span style={{ color: "#861442", marginRight: "6px" }}>{letter}</span>
+                      — {label}: {subtitle}
+                    </p>
+                    <span style={{ fontSize: "13px", color: "#f2e4ca", fontWeight: "600", whiteSpace: "nowrap", marginLeft: "16px" }}>{section.score}/20</span>
+                  </div>
+                  <div style={{ background: "#2b211b", borderRadius: "2px", height: "3px", marginBottom: "8px", overflow: "hidden" }}>
+                    <div style={{
+                      height: "100%",
+                      width: `${Math.round((section.score / 20) * 100)}%`,
+                      background: section.score >= 15 ? "#06472a" : section.score >= 10 ? "#861442" : "#8a5a3a",
+                      borderRadius: "2px",
+                      transition: "width 1.2s ease"
+                    }} />
+                  </div>
+                  <p style={{ fontSize: "15px", lineHeight: "1.75", color: "#f2e4ca", margin: 0, fontWeight: "400" }}>
+                    {section.content}
                   </p>
                 </div>
-                <ScoreBar score={section.score} />
-                <p style={{ fontSize: "14px", lineHeight: "1.8", color: "#9a8a72", margin: 0, fontWeight: "300" }}>
-                  {section.content}
-                </p>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
 
-          {/* Brand Personality */}
+          {/* Box 3: Brand Personality */}
           {playbook.brandPersonality && (
             <div style={{
               background: "#1e1510",
               border: "1px solid #3d2e24",
               borderRadius: "6px",
               padding: "32px 36px",
-              marginBottom: "16px",
-              marginTop: "16px"
+              marginBottom: "16px"
             }}>
-              <p style={{ fontSize: "16px", letterSpacing: "0.06em", textTransform: "uppercase", color: "#f2e4ca", marginBottom: "12px", fontWeight: "600" }}>✨ Bonus — <span style={{ fontWeight: "400" }}>Brand Personality</span></p>
-              <p style={{ fontSize: "14px", lineHeight: "1.8", color: "#9a8a72", margin: 0, fontWeight: "300" }}>
+              <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#5a4a3a", marginBottom: "16px", fontWeight: "500" }}>✨ Bonus: Brand Personality</p>
+              <p style={{ fontSize: "15px", lineHeight: "1.75", color: "#f2e4ca", margin: 0, fontWeight: "400" }}>
                 {playbook.brandPersonality}
               </p>
             </div>
