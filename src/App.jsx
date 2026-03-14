@@ -253,21 +253,22 @@ export default function App() {
 
       {/* Hero */}
       <div style={{ padding: "72px 40px 56px", maxWidth: "780px", margin: "0 auto" }}>
-        <p style={{ fontSize: "12px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#861442", marginBottom: "20px", fontWeight: "500" }}>Market Intelligence</p>
+        <p style={{ fontSize: "12px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#f2e4ca", marginBottom: "6px", fontWeight: "500" }}>Market Intelligence</p>
+        <p style={{ fontSize: "12px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#f2e4ca", marginBottom: "16px", fontWeight: "500" }}>Get Your</p>
         <h1 style={{
           fontSize: "clamp(36px, 5vw, 58px)",
           fontWeight: "300",
           lineHeight: "1.1",
-          margin: "0 0 24px",
+          margin: "0 0 28px",
           color: "#f2e4ca",
           letterSpacing: "-0.02em",
           fontFamily: "'Georgia', serif"
         }}>
-          <span style={{ color: "#861442", fontStyle: "italic" }}>Prestige Score</span><br />
-          Starts Here.
+          <span style={{ color: "#861442", fontStyle: "italic" }}>Prestige Score</span>
         </h1>
         <p style={{ fontSize: "18px", lineHeight: "1.75", color: "#9a8070", maxWidth: "520px", margin: "0 0 48px", fontWeight: "300" }}>
-          Drop in a website URL. Get a personalized Prestige Score Report — written in plain language, built around what makes you remarkable.
+          Your Prestige Score is waiting.<br />
+          Let's see what the algorithms know about you.
         </p>
 
         {/* Input */}
@@ -394,7 +395,7 @@ export default function App() {
           {/* Overview */}
           <div style={{ marginBottom: "48px" }}>
             <p style={{ fontSize: "12px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#5a4a3a", marginBottom: "12px", fontWeight: "500" }}>Overview</p>
-            <p style={{ fontSize: "19px", lineHeight: "1.75", color: "#c8b8a0", margin: 0, fontStyle: "italic", fontFamily: "'Georgia', serif", fontWeight: "300" }}>
+            <p style={{ fontSize: "14px", lineHeight: "1.75", color: "#c8b8a0", margin: 0, fontStyle: "italic", fontFamily: "'Georgia', serif", fontWeight: "300" }}>
               {playbook.overview}
             </p>
           </div>
@@ -426,7 +427,7 @@ export default function App() {
             <p style={{ fontSize: "19px", color: "#f2e4ca", margin: "0 0 10px", fontWeight: "500" }}>
               {playbook.overallDescriptor}
             </p>
-            <p style={{ fontSize: "16px", color: "#7a6a58", margin: 0, lineHeight: "1.7", fontStyle: "italic", fontFamily: "'Georgia', serif", fontWeight: "300" }}>
+            <p style={{ fontSize: "14px", color: "#7a6a58", margin: 0, lineHeight: "1.7", fontStyle: "italic", fontFamily: "'Georgia', serif", fontWeight: "300" }}>
               {playbook.overallSummary}
             </p>
           </div>
@@ -437,18 +438,20 @@ export default function App() {
             if (!section) return null;
             return (
               <div key={key} style={{
-                marginBottom: "40px",
-                paddingBottom: "40px",
-                borderBottom: "1px solid #2a1e18"
+                background: "#1e1510",
+                border: "1px solid #3d2e24",
+                borderRadius: "6px",
+                padding: "32px 36px",
+                marginBottom: "16px"
               }}>
-                <div style={{ display: "flex", alignItems: "baseline", gap: "10px", marginBottom: "10px" }}>
-                  <span style={{ fontSize: "13px", fontWeight: "700", color: "#861442", letterSpacing: "0.15em" }}>{letter}</span>
-                  <p style={{ fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5a4a3a", margin: 0, fontWeight: "500" }}>
-                    {label} — {subtitle}
+                <div style={{ display: "flex", alignItems: "baseline", gap: "10px", marginBottom: "12px" }}>
+                  <span style={{ fontSize: "18px", fontWeight: "700", color: "#f2e4ca", letterSpacing: "0.1em" }}>{letter}</span>
+                  <p style={{ fontSize: "16px", letterSpacing: "0.06em", textTransform: "uppercase", color: "#f2e4ca", margin: 0, fontWeight: "600" }}>
+                    {label} — <span style={{ fontWeight: "400", letterSpacing: "0.04em" }}>{subtitle}</span>
                   </p>
                 </div>
                 <ScoreBar score={section.score} />
-                <p style={{ fontSize: "17px", lineHeight: "1.8", color: "#d8c8b0", margin: 0, fontWeight: "300" }}>
+                <p style={{ fontSize: "14px", lineHeight: "1.8", color: "#9a8a72", margin: 0, fontWeight: "300" }}>
                   {section.content}
                 </p>
               </div>
@@ -461,11 +464,12 @@ export default function App() {
               background: "#1e1510",
               border: "1px solid #3d2e24",
               borderRadius: "6px",
-              padding: "36px 40px",
-              marginBottom: "40px"
+              padding: "32px 36px",
+              marginBottom: "16px",
+              marginTop: "16px"
             }}>
-              <p style={{ fontSize: "12px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#861442", marginBottom: "16px", fontWeight: "500" }}>✨ Bonus: Brand Personality</p>
-              <p style={{ fontSize: "17px", lineHeight: "1.8", color: "#d8c8b0", margin: 0, fontWeight: "300" }}>
+              <p style={{ fontSize: "16px", letterSpacing: "0.06em", textTransform: "uppercase", color: "#f2e4ca", marginBottom: "12px", fontWeight: "600" }}>✨ Bonus — <span style={{ fontWeight: "400" }}>Brand Personality</span></p>
+              <p style={{ fontSize: "14px", lineHeight: "1.8", color: "#9a8a72", margin: 0, fontWeight: "300" }}>
                 {playbook.brandPersonality}
               </p>
             </div>
@@ -550,29 +554,12 @@ export default function App() {
           </div>
 
           {/* Footer */}
-          <div style={{ marginTop: "48px", paddingTop: "28px", borderTop: "1px solid #2a1e18", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
-            <p style={{ fontSize: "13px", color: "#4a3a2a", margin: 0, fontWeight: "400" }}>Monica Poling · monicapoling.com</p>
-            <button
-              onClick={() => { setPlaybook(null); setUrl(""); setError(null); setDebugInfo(null); }}
-              style={{
-                padding: "10px 20px",
-                background: "transparent",
-                border: "1px solid #3d2e24",
-                borderRadius: "4px",
-                color: "#6a5040",
-                fontSize: "12px",
-                fontFamily: "'Poppins', sans-serif",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                cursor: "pointer",
-                fontWeight: "500"
-              }}
-            >
-              New Report
-            </button>
+          <div style={{ marginTop: "48px", paddingTop: "28px", borderTop: "1px solid #2a1e18" }}>
+            <p style={{ fontSize: "13px", color: "#9a8070", margin: 0, fontWeight: "400" }}>Monica Poling · monicapoling.com</p>
           </div>
         </div>
       )}
     </div>
   );
 }
+
