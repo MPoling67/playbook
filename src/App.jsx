@@ -23,29 +23,29 @@ JSON Schema:
   "dateGenerated": "Month YYYY",
   "overallScore": 72,
   "overallDescriptor": "string — one of: Category Leader | Strong Foundation, Underutilized Story | Solid Presence, Clear Gaps | Underdeveloped Positioning | Significant Opportunity",
-  "orgParagraph": "2-3 warm sentences about the organization — include the business name, what they do, and something specific and genuine about what makes them worth paying attention to. Written as if you are introducing them to a smart friend.",
-  "scoreParagraph": "The score justification. Start with a punchy summarizing idea (one clause or phrase that captures the essence — not a label, not a header, just a thought that sets up what follows). Then three sentences: what is genuinely working, what is the primary gap holding the score back, and one forward-looking observation. Be specific. Be warm. No generics.",
+  "orgParagraph": "2 sentences max, 45 words max. Include the business name, what they do, and one specific genuine thing that makes them worth paying attention to. Warm, like introducing them to a smart friend.",
+  "scoreParagraph": "2 sentences max, 40 words max. Start with a punchy summarizing idea — one clause that captures the essence, not a label. Then: what is genuinely working and what is the primary gap. Specific, warm, no generics.",
   "prestige": {
     "score": 14,
-    "content": "TWO sentences. Warm, observational tone. Is their positioning distinct or generic? For nonprofits/govt/edu: is the mission stated with conviction? End with something that feels like honest encouragement or a genuine observation."
+    "content": "TWO sentences, 40 words max. Warm, observational tone. Is their positioning distinct or generic? For nonprofits/govt/edu: is the mission stated with conviction?"
   },
   "origin": {
     "score": 12,
-    "content": "TWO sentences. Warm, observational tone. For for-profit: is the founder/leader story visible and compelling? For nonprofits/govt/edu: is the founding mission active or buried under compliance language?"
+    "content": "TWO sentences, 40 words max. Warm, observational tone. For for-profit: is the founder/leader story visible and compelling? For nonprofits/govt/edu: is the founding mission active or buried?"
   },
   "wow": {
     "score": 16,
-    "content": "TWO sentences. Warm, observational tone. Name the standout factor. Also name the Sleeping Giant — the high-value thing that should be more elevated."
+    "content": "TWO sentences, 40 words max. Warm, observational tone. Name the standout factor in the first sentence. Name the Sleeping Giant — the high-value thing being left on the table — in the second."
   },
   "expertise": {
     "score": 10,
-    "content": "TWO sentences. Warm, observational tone. Is the depth of knowledge visible or assumed? Look for credentials, methodologies, frameworks, track record."
+    "content": "TWO sentences, 40 words max. Warm, observational tone. Is the depth of knowledge visible or assumed? Look for credentials, methodologies, frameworks, track record."
   },
   "reputation": {
     "score": 8,
-    "content": "TWO sentences. Warm, observational tone. On-page validation only — testimonials, logos, press, awards. Is social proof doing any conversion work?"
+    "content": "TWO sentences, 40 words max. Warm, observational tone. On-page validation only — testimonials, logos, press, awards. Is social proof doing any conversion work?"
   },
-  "brandPersonality": "Start with the business name. Two to three warm sentences. Based on tone, language, word choice, and content structure only — no visual analysis. What personality does this brand project? Then name the friction: the gap between the personality they are projecting and what their audience likely expects or needs. Frame it as an observation, not a criticism.",
+  "brandPersonality": "2 sentences max, 35 words max. Start with the business name. What personality does this brand project? Then name the friction — the gap between the personality being projected and what the audience likely expects. Warm observation, not criticism.",
   "urlsAttempted": ["https://example.com", "https://www.example.com"],
   "fetchSuccess": true,
   "fetchNote": "Optional string — only include if there were issues fetching. Describe what happened."
@@ -413,11 +413,14 @@ export default function App() {
                 animation: "scoreBar 1.2s ease forwards"
               }} />
             </div>
-            <p style={{ fontSize: "15px", color: "#f2e4ca", margin: "0 0 6px", fontWeight: "600", letterSpacing: "0.01em" }}>
-              {playbook.overallDescriptor}
+            <p style={{ fontSize: "13px", letterSpacing: "0.08em", textTransform: "uppercase", color: "#f2e4ca", margin: "0 0 8px", fontWeight: "600" }}>
+              About {playbook.businessName}
             </p>
-            <p style={{ fontSize: "15px", color: "#f2e4ca", margin: "0 0 16px", lineHeight: "1.75", fontWeight: "400" }}>
+            <p style={{ fontSize: "15px", color: "#f2e4ca", margin: "0 0 20px", lineHeight: "1.75", fontWeight: "400" }}>
               {playbook.orgParagraph}
+            </p>
+            <p style={{ fontSize: "13px", letterSpacing: "0.08em", textTransform: "uppercase", color: "#f2e4ca", margin: "0 0 8px", fontWeight: "600" }}>
+              About Your Score
             </p>
             <p style={{ fontSize: "15px", color: "#f2e4ca", margin: 0, lineHeight: "1.75", fontWeight: "400" }}>
               {playbook.scoreParagraph}
@@ -445,7 +448,7 @@ export default function App() {
                     </p>
                     <span style={{ fontSize: "13px", color: "#f2e4ca", fontWeight: "600", whiteSpace: "nowrap", marginLeft: "16px" }}>{section.score}/20</span>
                   </div>
-                  <div style={{ background: "#3d2e24", borderRadius: "2px", height: "3px", marginBottom: "8px", overflow: "hidden" }}>
+                  <div style={{ background: "#6a5a4a", borderRadius: "2px", height: "3px", marginBottom: "8px", overflow: "hidden" }}>
                     <div style={{
                       height: "100%",
                       width: `${Math.round((section.score / 20) * 100)}%`,
