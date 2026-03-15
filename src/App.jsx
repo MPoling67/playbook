@@ -265,6 +265,11 @@ export default function App() {
         input::placeholder { color: #5a4a3a; }
         * { box-sizing: border-box; }
         button:hover { opacity: 0.88; }
+        .btn-primary { background: #861442; color: #f9ebea; transition: background 0.2s, color 0.2s; }
+        .btn-primary:hover { background: #5a4a3a; color: #f2e4ca; }
+        .btn-primary:disabled { background: #3d2e24 !important; color: #6a5040 !important; cursor: not-allowed; }
+        .btn-link-primary { background: #861442; color: #f9ebea; transition: background 0.2s, color 0.2s; text-decoration: none; }
+        .btn-link-primary:hover { background: #5a4a3a; color: #f2e4ca; }
       `}</style>
 
       {/* Header */}
@@ -282,7 +287,7 @@ export default function App() {
 
       {/* Hero */}
       <div style={{ padding: "80px 40px 64px", maxWidth: "780px", margin: "0 auto" }}>
-        <p style={{ fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase", color: "#5a4a3a", marginBottom: "48px", fontWeight: "400" }}>Market Intelligence</p>
+        <p style={{ fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase", color: "#f2e4ca", marginBottom: "48px", fontWeight: "600" }}>Market Intelligence</p>
         <h1 style={{
           fontSize: "clamp(32px, 5vw, 54px)",
           fontWeight: "700",
@@ -325,10 +330,9 @@ export default function App() {
           <button
             onClick={handleGenerate}
             disabled={loading || !url.trim()}
+            className="btn-primary"
             style={{
               padding: "15px 28px",
-              background: loading ? "#3d2e24" : "#861442",
-              color: loading ? "#6a5040" : "#f9ebea",
               border: "none",
               borderRadius: "4px",
               fontSize: "13px",
@@ -336,7 +340,6 @@ export default function App() {
               letterSpacing: "0.1em",
               textTransform: "uppercase",
               cursor: loading ? "not-allowed" : "pointer",
-              transition: "all 0.2s",
               fontWeight: "600",
               whiteSpace: "nowrap"
             }}
@@ -604,14 +607,13 @@ export default function App() {
                 <button
                   onClick={handleEmailSubmit}
                   disabled={emailSubmitting || !email.trim() || !firstName.trim()}
+                  className="btn-primary"
                   style={{
                     alignSelf: "flex-start", padding: "12px 24px",
-                    background: emailSubmitting || !email.trim() || !firstName.trim() ? "#3d2e24" : "#861442",
-                    color: emailSubmitting || !email.trim() || !firstName.trim() ? "#6a5040" : "#f9ebea",
                     border: "none", borderRadius: "4px", fontSize: "13px",
                     fontFamily: "'Poppins', sans-serif", letterSpacing: "0.1em",
                     textTransform: "uppercase", cursor: emailSubmitting || !email.trim() || !firstName.trim() ? "not-allowed" : "pointer",
-                    fontWeight: "600", transition: "all 0.2s"
+                    fontWeight: "600"
                   }}
                 >
                   {emailSubmitting ? "Sending..." : "Send Me the Report →"}
@@ -634,25 +636,23 @@ export default function App() {
               flexWrap: "wrap",
               gap: "16px"
             }}>
-              <p style={{ fontSize: "16px", color: "#9a8070", margin: 0, maxWidth: "340px", lineHeight: "1.7", fontWeight: "300" }}>
-                Want to close that gap? Let's talk about your unfair advantage.
+              <p style={{ fontSize: "16px", color: "#9a8070", margin: 0, maxWidth: "380px", lineHeight: "1.7", fontWeight: "300" }}>
+                Want to talk about your results? Or learn how your org can develop AI business intelligence tools.
               </p>
               <a
                 href="https://monicapoling.com/vision"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="btn-link-primary"
                 style={{
                   display: "inline-block",
                   padding: "15px 28px",
-                  background: "#861442",
-                  color: "#f9ebea",
                   borderRadius: "4px",
                   fontSize: "13px",
                   fontFamily: "'Poppins', sans-serif",
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
                   fontWeight: "600",
-                  textDecoration: "none",
                   whiteSpace: "nowrap"
                 }}
               >
